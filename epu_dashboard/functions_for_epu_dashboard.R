@@ -30,7 +30,7 @@ end_date   <- as.Date("2025-01-31")
 #Predicting waiting time
 #setting up the df with num of patients seen and avg waiting time per day
 wait_time_pred_function <- function(){
-  episodes_with_date %>%
+  adm_rm_data <- episodes_with_date %>%
     mutate(
       waiting_time = as.numeric(difftime(Seen_in_Admission_Time,
                                          Arrival_Time,
@@ -64,6 +64,8 @@ wait_time_pred_function <- function(){
   
   predict(wait_time_model, newdata = current_data)
 }
+
+wait_time_pred_function()
 #------------------------------------------------------------
 
 #Average waiting time
